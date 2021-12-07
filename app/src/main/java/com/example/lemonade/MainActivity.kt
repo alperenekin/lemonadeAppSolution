@@ -117,6 +117,22 @@ class MainActivity : AppCompatActivity() {
      */
     private fun setViewElements() {
         val textAction: TextView = findViewById(R.id.text_action)
+        lemonImage = findViewById(R.id.image_lemon_state)
+        if(lemonadeState == SELECT){
+            textAction.setText(R.string.lemon_select)
+            lemonImage!!.setImageResource(R.drawable.lemon_tree)
+        }
+        else if(lemonadeState == SQUEEZE){
+            textAction.setText(R.string.lemon_squeeze)
+            lemonImage!!.setImageResource(R.drawable.lemon_squeeze)
+        }
+        else if(lemonadeState == DRINK){
+            textAction.setText(R.string.lemon_drink)
+            lemonImage!!.setImageResource(R.drawable.lemon_drink)
+        }else{
+            textAction.setText(R.string.lemon_empty_glass)
+            lemonImage!!.setImageResource(R.drawable.lemon_restart)
+        }
         // TODO: set up a conditional that tracks the lemonadeState
 
         // TODO: for each state, the textAction TextView should be set to the corresponding string from
@@ -136,7 +152,7 @@ class MainActivity : AppCompatActivity() {
         if (lemonadeState != SQUEEZE) {
             return false
         }
-        val squeezeText = getString(R.string.squeeze_count, squeezeCount)
+        val squeezeText = getString(R.string.squeeze_count, squeezeCount) //String resource with parameter
         Snackbar.make(
             findViewById(R.id.constraint_Layout),
             squeezeText,
